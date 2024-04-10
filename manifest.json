@@ -1,0 +1,16 @@
+{
+    "name": "Bunny Talk",
+    "short_name": "Bunny Talk",
+    "description": "BunnyTalk community, where love talks in bunny hops! 🐇💬",
+    "start_url": "https://bunnytalk.web.app",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#e291a3",
+    "icons": [
+        {
+            "src": "https://raw.githubusercontent.com/alekhakumarswain/Bunnytalk/main/Img/jpg_20230722_224807_0000.jpg",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ]
+}
