@@ -1,9 +1,10 @@
+/*Add these styles to your existing CSS for the skeleton loader */
 .chat-skeleton {
     border-radius: 8px;
     padding: 20px;
-    margin: 20px auto; 
-    max-width: 400px; 
-    animation: loading 1s infinite; 
+    margin: 20px auto; /* Adjust margin as needed */
+    max-width: 400px; /* Adjust the maximum width as needed */
+    animation: loading 1s infinite; /* Add an animation for a loading effect */
     }
     
     .avatar-skeleton {

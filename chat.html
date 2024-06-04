@@ -7,6 +7,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
 	<link rel="manifest" href="manifest.json">
 	
+	<!-- Add this to your head section to include Bootstrap CSS -->
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 	<link href=" https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css " rel="stylesheet">
 	
@@ -15,11 +16,13 @@
 	
 	
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Bootstrap CSS -->
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
     <style type="text/css">
+        /* Default styles */
         * {
             box-sizing: border-box;
         }
@@ -51,8 +54,8 @@
         }
 
         .navbar-brand {
-            font-family: 'Gagalin', cursive; 
-            font-size: 24px; 
+            font-family: 'Gagalin', cursive; /* Apply Gagalin font to the navbar title */
+            font-size: 24px; /* Adjust the font size as needed */
         }
 
         .navbar-brand .logo {
@@ -85,6 +88,7 @@
             padding: 2px;
         }
 
+        /* Media queries for mobile devices */
         @media only screen and (max-width: 600px) {
             nav ul {
                 flex-direction: column;
@@ -95,6 +99,7 @@
             }
         }
 
+        /* Media queries for desktop devices */
         @media only screen and (min-width: 601px) {
             #chat {
                 display: flex;
@@ -161,7 +166,7 @@
             background-color: #e291a3;
             border-top: 1px solid #333;
             position: fixed;
-            bottom: 0; 
+            bottom: 0; /* Place the chat input at the bottom */
             left: 0;
         }
 
@@ -197,6 +202,7 @@
             background-color: #555;
         }
 
+        /* Centered date styles */
 
         .message-date {
             text-align: center;
@@ -241,6 +247,7 @@
         }
         
        
+        /*CSS for the .uploaded-image class */
         #chat-img-display {
         position:relative;
         justify-content: center;
@@ -252,7 +259,7 @@
         background-color: #e291a3;
         border-top: 1px solid #333;
         position: fixed;
-        bottom: 10px; 
+        bottom: 10px; /* Place the chat input at the bottom */
         left: 0
         }
         
@@ -263,6 +270,7 @@
         margin-top: 10px;
         }
         
+        /* CSS for the .send-button class */
         .send-button {
         display: inline-block;
         margin-top: 10px;
@@ -278,10 +286,12 @@
         background-color: #0056b3;
         }
         
+        /* CSS for the .image-container class */
         .image-container {
         text-align: center;
         }
         
+        /* Style for the close icon */
         .close-icon {
         position: absolute;
         top: 0px;
@@ -291,6 +301,7 @@
         cursor: pointer;
         }
         
+        /* Style for the send icon */
         .send-icon {
         margin-right: 5px;
         font-size:25px;
@@ -305,7 +316,7 @@
                 <div class="logo">
                     <img class="logo"
                          src="https://raw.githubusercontent.com/alekhakumarswain/Bunnytalk/main/Img/jpg_20230722_224807_0000.jpg">
-                </div> 
+                </div> <!-- Circular logo -->
                 BunnyTalk
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -338,7 +349,7 @@
             <input type="file" accept="image/*" id="file-input" style="display: none;">
            		<button id="attach-button">
            		<div class="attachment">
-           		<span class="ri-attachment-line"></span> 
+           		<span class="ri-attachment-line"></span> <!-- Use the Bootstrap icon class here -->
            		</div>
            		</button>          		
             <button type="submit" id="send-msg"> </button>
@@ -346,6 +357,7 @@
     </section>
 </main>
 
+<!-- Include jQuery and Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -371,8 +383,9 @@
 		});
 		});
 	
+	//Add an event listener to the "Attach File" button
 	document.getElementById("attach-button").addEventListener("click", function () {
-
+	// Trigger the file input click event
 	document.getElementById("file-input").click();
 	});
 	
@@ -389,18 +402,23 @@
 	var img = new Image();
 	img.onload = function () {
 	var chatDisplay = document.getElementById('chat-img-display');
-	chatDisplay.innerHTML = ''; 
+	chatDisplay.innerHTML = ''; // Clear previous content
+	
+	// Create a container div
 	var containerDiv = document.createElement('div');
 	containerDiv.classList.add('image-container');
 	
+	// Create a close icon for hiding the image
 	var closeIcon = document.createElement('i');
 	closeIcon.classList.add('ri-close-circle-line', 'close-icon');
 	closeIcon.addEventListener('click', function () {
+	// Hide the image container and chat-display
 	containerDiv.style.display='none';
 	chatDisplay.style.display='none';
 	document.getElementById('send-msg').style.display='block';
 	});
 	
+	// Apply class names to elements
 	img.classList.add('uploaded-image');
 	containerDiv.appendChild(img);
 	containerDiv.appendChild(closeIcon);
@@ -408,7 +426,8 @@
 	var sendButton = document.createElement('button');
 	sendButton.classList.add('send-button');
 	sendButton.addEventListener('click', function () {
-
+	// Handle sending the image here
+	// You can access the image source with 'img.src'
 	console.log('Sending image:', img.src);
 	document.getElementById('send-msg').style.display='block';
 	document.getElementById('chat-img-display').style.display='none';
@@ -416,10 +435,12 @@
 	
 	});
 	
+	// Create a send icon
 	var sendIcon = document.createElement('i');
 	sendIcon.classList.add('ri-send-plane-fill', 'send-icon');
 	sendButton.appendChild(sendIcon);
 	
+	// Add text to the send button
 	sendButton.appendChild(document.createTextNode('SEND'));
 	
 	containerDiv.appendChild(sendButton);
@@ -433,15 +454,20 @@
 	reader.readAsDataURL(files[0]);
 	}
 	
+    // Check if 'mname' is empty or not in local storage
     var mname = localStorage.getItem('mname');
 
     if (!mname) {
+        // If 'mname' is empty, redirect to login.html
         window.location.href = 'reglogin.html';
     }
+    // Get a reference to the Firebase database
     var database = firebase.database();
 
+    // Get a reference to the "messages" collection in the database
     var messagesRef = database.ref("messages");
 
+    // Variables to keep track of the last displayed date
     var lastDate = null;
     var dateFormatOptions = {
         weekday: 'short',
@@ -450,17 +476,21 @@
         day: 'numeric',
     };
 
+    // Listen for new messages and add them to the chat display
     messagesRef.orderByChild("timestamp").on("child_added", function (snapshot) {
         var message = snapshot.val();
         var messageDate = new Date(message.timestamp);
 		hideSkeletonLoader();
+        // Format the date only if it's different from the last displayed date
         if (!lastDate || messageDate.toDateString() !== lastDate.toDateString()) {
             var formattedDate = messageDate.toLocaleDateString(undefined, dateFormatOptions);
             var dateDisplay = "<div class='message-date'>" + formattedDate + "</div>";
             document.getElementById("chat-display").innerHTML += dateDisplay;
 
+            // Update the last displayed date
             lastDate = messageDate;
         }
+		// Define the logo HTML based on the sender
 		var logo;
 		if (message.name === mname) {
 		logo = "<img class='ilogo rlogo' src='https://raw.githubusercontent.com/alekhakumarswain/Bunnytalk/main/Img/jpg_20230722_224807_0000.jpg'>";
@@ -468,8 +498,10 @@
 		logo = "<img class='ilogo llogo' src='https://raw.githubusercontent.com/alekhakumarswain/Bunnytalk/main/Img/jpg_20230722_224807_0000.jpg'>";
 		}
 		
+		// Create the message container
 		var messageContainer = "<div class='message-container";
 		
+		// Check if the message is sent by the current user
 		if (message.name === mname) {
 		messageContainer += "message sent-message";
 		} else {
@@ -477,6 +509,7 @@
 		}
 		messageContainer += "'>";
 		
+		// Check if the message is an image
 		if (message.type === "image") {
 		messageContainer += "<div class='message'><p><strong>"+ message.name + "</strong><br>";
 		messageContainer += "<a href='"+ message.txt +"'><img style='height:60%;width:70%;padding:10px 0px 10px 0;'  src='" + message.text + "' alt='Image' /></a>";

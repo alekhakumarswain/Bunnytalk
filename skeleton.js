@@ -1,4 +1,5 @@
 function showSkeletonLoader() {
+    // Show the skeleton loader HTML
     document.getElementById("chat-display").innerHTML = `
     <div class="chat-skeleton">
     <div class="avatar-skeleton lavt"></div>
@@ -22,6 +23,7 @@ function showSkeletonLoader() {
     }
     
     function hideSkeletonLoader() {
+    // Remove the skeleton loader HTML
     var skeletonLoader = document.querySelector(".chat-skeleton");
     if (skeletonLoader) {
     skeletonLoader.remove();

@@ -1,8 +1,8 @@
 {
     "name": "Bunny Talk",
-    "short_name": "Bunny Talk",
-    "description": "BunnyTalk community, where love talks in bunny hops! 🐇💬",
-    "start_url": "https://bunnytalk.web.app",
+    "short_name": "BunnyTalk",
+    "description": "Join our BunnyTalk community today, where love talks in bunny hops! 🐇💬",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#e291a3",

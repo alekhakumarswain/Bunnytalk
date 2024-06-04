@@ -109,12 +109,12 @@
     -webkit-filter: blur(5px);
     width: calc(100% + 4px);
     height: calc(100% + 4px);
-    animation: glowingnext 20s linear infinite;
+    animation: glowing  20s linear infinite;
     transition: opacity 0.3s ease-in-out;
     border-radius: 10px;
     }
     
-    @keyframes glowingnext {
+    @keyframes glowing {
     0% {
     background-position: 0 0;
     }
@@ -149,29 +149,31 @@
    }
    .timer-container {
    position: relative;
-   top: -80px; 
-   left: 50%;
-   transform: translate(-50%, -50%); 
-   text-align: center;
-   z-index: 1; 
-   background-color: rgba(255, 255, 255, 0.8); 
-   padding: 5px; 
-   border-radius: 50px; 
-   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+   top: -80px; /* Position the div at the vertical center of the parent */
+   left: 50%; /* Position the div at the horizontal center of the parent */
+   transform: translate(-50%, -50%); /* Center the div exactly over the parent */
+   text-align: center; /* Center the content of the div horizontally */
+   z-index: 1; /* Ensure the timer div is placed above the SVG */
+   background-color: rgba(255, 255, 255, 0.8); /* Set a background color for better visibility */
+   padding: 5px; /* Add padding for better spacing */
+   border-radius: 50px; /* Add border-radius for rounded corners */
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a box shadow for a subtle effect */
    }
    #next2{
    display:none;
    }
   </style>
+  <!-- Add Google Fonts link for Gagalin font -->
   <link href="https://fonts.googleapis.com/css2?family=Gagalin&display=swap" rel="stylesheet">
 </head>
 
 <body onload="come()">
+  <!-- Fixed Navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <a class="navbar-brand" href="#">
       <div class="logo">
       	<img class="logo" src="https://raw.githubusercontent.com/alekhakumarswain/Bunnytalk/main/Img/jpg_20230722_224807_0000.jpg">
-      </div> 
+      </div> <!-- Circular logo -->
       BunnyTalk
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -180,6 +182,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
+        <!-- Add your menu items here -->
         <li class="nav-item active">
           <a class="nav-link" href="#">Home</a>
         </li>
@@ -198,15 +201,20 @@
         <li class="nav-item">
 	        <a class="nav-link" href="gallery.html">Gallery</a>
         </li>
+        <li class="nav-item">
+	        <a class="nav-link" href="Roseday.html">Rose Day</a>
+        </li>  
       </ul>
     </div>
   </nav>
 
+  <!-- Welcome Image -->
   <div class="container mt-4">
-    <div class="loader"></div>
+    <div class="loader"></div> <!-- Loader div -->
     <img src="https://raw.githubusercontent.com/alekhakumarswain/Bunnytalk/main/Img/20230722_2215471.gif" alt="Welcome to BunnyTalk" class="welcome-image" id="welcome-image">
   </div>
 
+  <!-- Content (hidden initially) -->
   <div class="container mt-4 content" id="content">
     <h1>Welcome to BunnyTalk!</h1>
     <p>
@@ -230,13 +238,16 @@
 		 <button class="next" role="button" id="next2" onclick="hidep2()">🫸NEXT🫷👉</button>
 		 
 	</div>
+  <!-- Add Background Music   Remove / / before final publish
  <audio id="audio" style="display:none;"
  src="https:/ /github.com/alekhakumarswain/Bunnytalk/raw/main/Music/Ek%20Duje%20Ke%20Vaaste%202%20-%20Instrumental%20!%20Piano.mp3">
- 
+ -->
   
+  <!-- Add Bootstrap JS and custom JS -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
+  // Array of background image URLs
   const backgroundImages = [
   "url('https://raw.githubusercontent.com/alekhakumarswain/Bunnytalk/main/Img/20230724_174423_0000.png')",
   "url('https://raw.githubusercontent.com/alekhakumarswain/Bunnytalk/main/Img/20230723_123107_0000.png')",
@@ -248,20 +259,27 @@
   "url('https://raw.githubusercontent.com/alekhakumarswain/Bunnytalk/main/Img/png_20230723_123956_0000.png')",
   ];
   
+  // Music 
   window.onload = () => {
   window.addEventListener("click", function () {
   audio.play();
   });
   }
+  
+  // Show the content and music control after 10 seconds
   setTimeout(function () {
   document.getElementById("content").style.display="block";
   document.getElementById("welcome-image").style.display = "none";
   var newBackgroundImage = "url('https://raw.githubusercontent.com/alekhakumarswain/Bunnytalk/main/Img/20230724_174423_0000.png')";
   document.body.style.backgroundImage = newBackgroundImage;
-  }, 10000);
+  }, 10000); // 10000 milliseconds = 10 seconds
+  
+  // Show loader until the content is displayed
   setTimeout(function () {
   document.getElementsByClassName("loader")[0].style.display = "none";
-  }, 10000); 
+  }, 10000); // 10000 milliseconds = 10 seconds
+  
+  // Hide the 1st screen and change background image on button click
   function hidep1() {
   document.getElementById("content").style.display = "none";
   document.getElementById("cloudbox").style.display="block";
@@ -273,9 +291,10 @@
   document.body.style.backgroundImage = newBackgroundImage;
   currentBackgroundIndex = (currentBackgroundIndex + 1) % backgroundImages.length;
   setTimeout(() => {
-   document.getElementById("next2").style.display = "block"; 
+   document.getElementById("next2").style.display = "block"; // Show the second button after 5000ms
   }, 5000);
   }
+  // Function to calculate the time difference
   function getTimeDifference(targetDate) {
   const currentDate = new Date();
   const timeDifference = currentDate - targetDate;
@@ -293,7 +312,9 @@
   };
   }
   
+  // Function to update the timer display
   function updateTimerDisplay() {
+  // Set the target date and time in the past
   const targetDate = new Date("2023-01-26T11:50:00");
   
   const timeDifference = getTimeDifference(targetDate);
@@ -301,23 +322,23 @@
   const timerText = document.getElementById("timer-text");
   timerText.textContent = `${timeDifference.days} days, ${timeDifference.hours} hours, ${timeDifference.minutes} minutes, ${timeDifference.seconds} seconds`;
   
-  setTimeout(updateTimerDisplay, 1000); 
+  setTimeout(updateTimerDisplay, 1000); // Update every 1 second
   }
   
+  // Call the updateTimerDisplay function initially to start the timer
   updateTimerDisplay();
   
   </script>
-  <script src="https: //alekhakumarswain.github.io/Js/popup.js"></script>
   <script>
   if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js')
-  .then(function (registration) {
-  console.log('Service Worker registered with scope:', registration.scope);
-  })
-  .catch(function (error) {
-  console.error('Service Worker registration failed:', error);
-  });
-  }
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(error) {
+            console.log('ServiceWorker registration failed: ', error);
+        });
+    });
+}
   </script>
   
   </body>

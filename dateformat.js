@@ -1,4 +1,3 @@
-//date format
 function formatDate(date) {
     var hours = date.getHours() % 12 || 12;
     var minutes = date.getMinutes();

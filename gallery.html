@@ -5,8 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BunnyTalk</title>
+  <!-- Add Bootstrap CSS link -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Add custom CSS styles here -->
   <style>
+    /* Your custom CSS styles here */
     body {
       padding-top: 60px;
       background-color: #ffe6a6;
@@ -32,35 +35,35 @@
 		position:relative;
 		display:inline-block;
 	}
-
+	/* Center the button within the image gallery */
 	#set-background-button {
 	position: absolute;
-	top: 91%; 
-	left: 30%; 
-	transform: translate(-20%,-30%);
-	z-index: 1;
+	top: 91%; /* Place the button vertically at the middle of the parent container */
+	left: 30%; /* Place the button horizontally at the middle of the parent container */
+	transform: translate(-20%,-30%); /* Use translate to center the button precisely */
+	z-index: 1; /* Ensure the button appears above the image */
 	background-color: rgba(233,55,33,0.5);
 	color: #fff;
 	border: 2px solid black;
 	border-radius: 30px;
-	padding: 5px 5px; 
+	padding: 5px 5px; /* Adjust padding as needed */
 	cursor: pointer;
 	appearance: none;
 	font-size:20px;
 	}
 	
-
+	/* Add hover effect */
 	#set-background-button:hover {
 	background-color: #4e4;
 	}
-
+    /* Add additional CSS styling as needed */
   </style>
-
+  <!-- Add Google Fonts link for Gagalin font -->
   <link href="https://fonts.googleapis.com/css2?family=Gagalin&display=swap" rel="stylesheet">
 </head>
 
 <body>
-
+  <!-- Fixed Navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <a class="navbar-brand" href="#">
       <div class="logo">
@@ -74,7 +77,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-
+        <!-- Add your menu items here -->
         <li class="nav-item">
           <a class="nav-link" href="#">Home</a>
         </li>
@@ -88,13 +91,13 @@
     </div>
   </nav>
 
-
+  <!-- Image Gallery Carousel -->
   <div id="imageGalleryCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-
+      <!-- Indicator dots will be added dynamically using JS -->
     </ol>
     <div class="carousel-inner">
-
+      <!-- Gallery images will be added dynamically using JS -->
     </div>
     <a class="carousel-control-prev" href="#imageGalleryCarousel" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -108,20 +111,22 @@
     
   </div>
 
-
+  <!-- Bootstrap JS and custom JS -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  
-
+ <!-- ... (previous HTML code) ... -->
  
  <script>
-
- let currentImageIndex = 0; 
+ // Your custom JS code here
+ // Initialize the carousel with data from images.json
+ let currentImageIndex = 0; // Initialize the current image index
  
  function initializeCarousel(images) {
  const carouselInner = document.querySelector(".carousel-inner");
  const carouselIndicators = document.querySelector(".carousel-indicators");
  
+ // Add images to carousel inner and indicators
  for (let i = 0; i < images.length; i++) {
  const carouselItem = document.createElement("div");
  carouselItem.classList.add("carousel-item");
@@ -138,10 +143,12 @@
  carouselIndicators.appendChild(indicator);
  }
  
+ // Set the first image as active
  carouselInner.firstElementChild.classList.add("active");
  carouselIndicators.firstElementChild.classList.add("active");
  }
  
+ // Fetch the images.json file and initialize the carousel
  fetch('images.json')
  .then(response => response.json())
  .then(data => {
@@ -152,6 +159,8 @@
  console.error('Error fetching images.json:', error);
  });
  
+ // Initialize the carousel
+ // Fetch the images.json file and initialize the carousel
  fetch('images.json')
  .then(response => response.json())
  .then(data => {
@@ -163,6 +172,7 @@
  });
  
  
+ // Handle the carousel controls with jQuery
  $(document).ready(function () {
  $("#imageGalleryCarousel").carousel();
  
@@ -176,7 +186,9 @@
  currentImageIndex = ($("#imageGalleryCarousel .carousel-item.active").index());
  });
  
+ // Set as Background Image button click handler
  $("#set-background-button").click(function () {
+ // Store the currentImageIndex in local storage
  localStorage.setItem('backgroundImageIndex', currentImageIndex);
  alert("Background image set!");
  });
