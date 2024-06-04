@@ -79,7 +79,7 @@
       <ul class="navbar-nav ml-auto">
         <!-- Add your menu items here -->
         <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" href="index.html">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">About</a>
@@ -149,19 +149,7 @@
  }
  
  // Fetch the images.json file and initialize the carousel
- fetch('images.json')
- .then(response => response.json())
- .then(data => {
- const backgroundImages = data.backgroundImages;
- initializeCarousel(backgroundImages);
- })
- .catch(error => {
- console.error('Error fetching images.json:', error);
- });
- 
- // Initialize the carousel
- // Fetch the images.json file and initialize the carousel
- fetch('images.json')
+ fetch('js/images.json')
  .then(response => response.json())
  .then(data => {
  const backgroundImages = data.backgroundImages;
