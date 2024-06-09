@@ -1,10 +1,10 @@
 var config = {
-    apiKey: "AIzaSyB4PXatCRA7I0Uvc8O2IXs13mbfY8NK-gY",
-    authDomain: "bunnytalk-db.firebaseapp.com",
-    projectId: "bunnytalk-db",
-    storageBucket: "bunnytalk-db.appspot.com",
-    messagingSenderId: "79115378372",
-    appId: "1:79115378372:web:e10a65a0f40b4a9448b391",
-    measurementId: "G-G4MWQCPKER"
+    apiKey: "",
+    authDomain: "abv.firebaseapp.com",
+    projectId: "d",
+    storageBucket: "rmappspot.com",
+    messagingSenderId: "7911sryrtj5378372",
+    appId: "1:79115378372:web:e10a65ayrmy0f40b4a9448b391",
+    measurementId: "G-G4MWQCyjyrjjPKER"
 };
 firebase.initializeApp(config);
