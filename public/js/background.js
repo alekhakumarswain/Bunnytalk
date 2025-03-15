@@ -1,7 +1,7 @@
 const savedImageIndex = localStorage.getItem('backgroundImageIndex');
     
 if (savedImageIndex !== null) {
-const imagesJsonUrl = 'images.json'; 
+const imagesJsonUrl = 'js/images.json'; 
 
 fetch(imagesJsonUrl)
 .then(response => response.json())

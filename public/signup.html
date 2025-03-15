@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center">Register</h2>
+    <form id="registerForm">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" required>
+        </div>
+        <div class="form-group">
+            <label for="uname">Username</label>
+            <input type="text" class="form-control" id="uname" required>
+        </div>
+        <div class="form-group">
+            <label for="number">Phone Number</label>
+            <input type="text" class="form-control" id="number" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" required>
+        </div>
+        <div class="form-group">
+            <label for="profilePhoto">Profile Photo</label>
+            <input type="file" class="form-control-file" id="profilePhoto" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <div id="message" class="mt-3"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-storage.js"></script>
+
+<script src="js/config.js"></script>
+<script>
+    // Reference to Firestore
+    const db = firebase.firestore();
+
+    // Registration form submit event
+    document.getElementById('registerForm').addEventListener('submit', registerUser);
+
+    function registerUser(e) {
+        e.preventDefault();
+
+        // Get form values
+        const name = document.getElementById('name').value;
+        const uname = document.getElementById('uname').value;
+        const number = document.getElementById('number').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const profilePhoto = document.getElementById('profilePhoto').files[0];
+
+        if (profilePhoto.size > 100 * 1024) {
+            alert("Profile photo must be under 100KB");
+            return;
+        }
+
+        // Create user with email and password
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(userCredential => {
+                const user = userCredential.user;
+
+                // Send verification email
+                user.sendEmailVerification();
+
+                // Save user data to Firestore
+                db.collection('users').doc(user.uid).set({
+                    name: name,
+                    uname: uname,
+                    number: number,
+                    email: email,
+                    uid: user.uid
+                });
+
+                // Upload profile photo
+                const storageRef = firebase.storage().ref('profilePhotos/' + user.uid);
+                storageRef.put(profilePhoto).then(() => {
+                    document.getElementById('message').innerHTML = "<div class='alert alert-success'>Registration successful! Please verify your email.</div>";
+                });
+
+                // Verify phone number
+                const appVerifier = new firebase.auth.RecaptchaVerifier('registerForm');
+                firebase.auth().signInWithPhoneNumber(number, appVerifier)
+                    .then(confirmationResult => {
+                        const verificationCode = window.prompt("Please enter the verification code sent to your phone");
+                        return confirmationResult.confirm(verificationCode);
+                    })
+                    .then(result => {
+                        document.getElementById('message').innerHTML += "<div class='alert alert-success'>Phone number verified successfully!</div>";
+                    })
+                    .catch(error => {
+                        document.getElementById('message').innerHTML += "<div class='alert alert-danger'>Error verifying phone number: " + error.message + "</div>";
+                    });
+            })
+            .catch(error => {
+                document.getElementById('message').innerHTML = "<div class='alert alert-danger'>Error: " + error.message + "</div>";
+            });
+    }
+</script>
+</body>
+</html>
